@@ -5,9 +5,12 @@
   "main": "./lib/react-sample.js",
   "scripts": {
     "publish": "babel ./src -d lib",
-    "example": "webpack-dev-server"
+    "example": "webpack-dev-server",
+    "jsdoc": "node_modules/.bin/jsdoc -c jsdoc.json"
   },
   "dependencies": {
+    "docdash": "^0.4.0",
+    "jsdoc": "^3.5.5",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
