@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../../../../src/Button';
 
 class ButtonPage extends React.Component {
 
@@ -8,7 +9,7 @@ class ButtonPage extends React.Component {
     }
 
     render() {
-        return "Button Page";
+        return <Button>Button Example</Button>;
     }
 }
 
