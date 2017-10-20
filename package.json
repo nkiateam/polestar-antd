@@ -6,11 +6,11 @@
   "scripts": {
     "publish": "babel ./src -d lib",
     "example": "webpack-dev-server",
-    "jsdoc": "node_modules/.bin/jsdoc -c jsdoc.json"
+    "doc": "styleguidist server",
+    "doc:build": "styleguidist build"
   },
   "dependencies": {
-    "docdash": "^0.4.0",
-    "jsdoc": "^3.5.5",
+    "antd": "^2.13.6",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
@@ -33,6 +33,7 @@
     "eslint-plugin-react": "^7.3.0",
     "react-hot-loader": "^3.0.0-beta.7",
     "react-router-dom": "^4.2.2",
+    "react-styleguidist": "^6.0.31",
     "webpack": "^3.5.5",
     "webpack-dev-server": "^2.7.1"
   },

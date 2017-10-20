@@ -15,12 +15,19 @@ class Wizard extends React.Component {
     }
 
     static propTypes = {
-        direction: PropTypes.oneOf(['horizontal', 'vertical']), // Steps 가로/세로 지정
+        /** Steps 가로/세로 지정 */
+        direction: PropTypes.oneOf(['horizontal', 'vertical']),
+        /** Steps의 크기 */
         size: PropTypes.oneOf(['default', 'small']), // Steps의 크기
+        /** direction이 vertical일 경우 Steps의 위치 왼쪽/오른쪽 지정 */
         stepPosition: PropTypes.oneOf(['left', 'right']), // direction이 vertical일 경우 왼쪽/오른쪽 지정
-        stepWidth: PropTypes.number, // Steps 영역의 너비
-        center: PropTypes.bool, // 위자드 컴포넌트를 가운데 정렬할 것인지 여부
-        width: PropTypes.number, // 위자드 컴포넌트의 너비를 fix
+        /** directions이 vertical일 경우 Steps 영역의 너비 */
+        stepWidth: PropTypes.number,
+        /** Wizard 컴포넌트의 너비를 지정 */
+        width: PropTypes.number,
+        /** Wizard 컴포넌트 가운데 정렬 여부 */
+        center: PropTypes.bool, //
+        /** Contents 영역의 최소 높이 */
         minContentsHeight: PropTypes.number, // Contents 영역의 최소 높이
     };
 

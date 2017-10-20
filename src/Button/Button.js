@@ -3,19 +3,24 @@ import PropTypes from 'prop-types';
 import AntButton from 'antd/lib/button';
 import './style/Button.css';
 
+/**
+ * General component description in JSDoc format. Markdown is *supported*.
+ */
 class Button extends React.Component {
 
     static propTypes = {
-        type: PropTypes.string,
-        htmlType: PropTypes.string,
+        type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'danger', 'default']),
+        htmlType: PropTypes.oneOf(['button', 'submit', 'reset']),
         icon: PropTypes.string,
-        shape: PropTypes.string,
-        size: PropTypes.string,
+        shape: PropTypes.oneOf(['circle']),
+        size: PropTypes.oneOf(['small', 'large']),
+        /** boolean | { delay: number } */
         loading: PropTypes.oneOfType([
-            PropTypes.object, // { delay: number }
             PropTypes.bool,
+            PropTypes.object,
         ]),
-        onClick: PropTypes.func
+        onClick: PropTypes.func,
+        ghost: PropTypes.bool
     };
 
     static defaultProps = {
