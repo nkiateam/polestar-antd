@@ -1,0 +1,9 @@
+@import '~antd/dist/antd.css';
+
+a:hover {
+    text-decoration: none !important;
+}
+
+#app {
+    height: 100%;
+}
