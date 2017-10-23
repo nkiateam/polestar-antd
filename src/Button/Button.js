@@ -13,7 +13,7 @@ class Button extends React.Component {
         htmlType: PropTypes.oneOf(['button', 'submit', 'reset']),
         icon: PropTypes.string,
         shape: PropTypes.oneOf(['circle']),
-        size: PropTypes.oneOf(['small', 'large']),
+        size: PropTypes.oneOf(['small', 'default', 'large']),
         /** boolean | { delay: number } */
         loading: PropTypes.oneOfType([
             PropTypes.bool,
