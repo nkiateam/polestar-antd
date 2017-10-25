@@ -105,4 +105,4 @@ typings/
 .env
 
 # document
-styleguide
+lib

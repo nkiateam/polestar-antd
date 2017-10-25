@@ -7,12 +7,39 @@ module.exports = {
     serverPort: 4001,
 
     // 문서화 할 컴포넌트 스코프
-    components: 'src/*/[A-Z]*.{js,jsx}',
+    components: './src/*/[A-Z]*.{js,jsx}',
 
     // 문서화 할때 같이 번들링 할 의존성들
     require: [
-        path.join(__dirname, './examples/src/style/App.css')
+        './examples/src/style/App.css'
     ],
+
+    webpackConfig: {
+        module: {
+            rules: [
+                {
+                    test: /\.(js)$/,
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['es2015', 'react', 'stage-0'],
+                        plugins: ['react-hot-loader/babel'],
+                    },
+                    exclude: /node_modules/,
+                },
+                {
+                    test: /\.css$/,
+                    use: [
+                        require.resolve('style-loader'),
+                        {
+                            loader: require.resolve('css-loader'),
+                        },
+                    ]
+                }
+            ]
+        }
+    },
+
+    styleguideDir: './docs',
 
     // props와 methods를 기본적으로 펼칠지 말지
     showUsage: true,

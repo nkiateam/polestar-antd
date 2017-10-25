@@ -1,11 +1,12 @@
 {
   "name": "polestar-antd",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "",
-  "main": "./lib/react-sample.js",
+  "main": "./lib/index.js",
   "scripts": {
-    "publish": "babel ./src -d lib",
-    "example": "webpack-dev-server",
+    "prepublish": "babel ./src -d lib --copy-files",
+    "build": "babel ./src -d lib --copy-files",
+    "example": "webpack-dev-server --config webpack.example.config.js",
     "doc": "styleguidist server",
     "doc:build": "styleguidist build"
   },
@@ -42,6 +43,7 @@
     "AntDesign",
     "Polestar"
   ],
+  "files": ["lib"],
   "author": "NKIA",
   "license": "MIT"
 }
