@@ -1,24 +1,19 @@
 .polestar-wizard {
-    /*border: 1px dashed #ff0000;*/
 }
 
 .polestar-wizard-grid {
-    /*border: 1px dashed #46d3ff;*/
     margin: 0 auto;
     width: 100%;
 }
 
 .polestar-wizard-contents {
-    /*border: 1px dashed yellow;*/
     padding: 10px;
 }
 
 .polestar-wizard-steps {
-    /*border: 1px dashed #ffa8df;*/
     padding: 10px;
 }
 
 .polestar-wizard-actions {
-    /*border: 1px dashed purple;*/
     margin: 0 auto;
 }

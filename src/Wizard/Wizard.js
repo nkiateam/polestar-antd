@@ -11,16 +11,15 @@ class Wizard extends React.Component {
         this.state = {
             current: 0,
             status: '',
+            direction: this.props.stepPosition === 'top' ? 'horizontal' : 'vertical',
         };
     }
 
     static propTypes = {
-        /** Steps 가로/세로 지정 */
-        direction: PropTypes.oneOf(['horizontal', 'vertical']),
+        /** direction이 vertical일 경우 Steps의 위치 왼쪽/오른쪽 지정 */
+        stepPosition: PropTypes.oneOf(['top', 'left', 'right']), // direction이 vertical일 경우 왼쪽/오른쪽 지정
         /** Steps의 크기 */
         size: PropTypes.oneOf(['default', 'small']), // Steps의 크기
-        /** direction이 vertical일 경우 Steps의 위치 왼쪽/오른쪽 지정 */
-        stepPosition: PropTypes.oneOf(['left', 'right']), // direction이 vertical일 경우 왼쪽/오른쪽 지정
         /** directions이 vertical일 경우 Steps 영역의 너비 */
         stepWidth: PropTypes.number,
         /** Wizard 컴포넌트의 너비를 지정 */
@@ -32,7 +31,6 @@ class Wizard extends React.Component {
     };
 
     static defaultProps = {
-        direction: 'horizontal',
         size: 'default',
         stepPosition: 'left',
         stepWidth: 200,
@@ -80,7 +78,7 @@ class Wizard extends React.Component {
                 current
             });
         });
-    }
+    };
 
     /**
      * Done 버튼이 클릭되었을 때
@@ -148,7 +146,7 @@ class Wizard extends React.Component {
     };
 
     /**
-     * this.props.direction === 'horizontal' 일 경우의 레이아웃을 렌더링
+     * this.state.direction === 'horizontal' 일 경우의 레이아웃을 렌더링
      */
     _renderHorizontalLayout = () => {
         return (
@@ -157,32 +155,32 @@ class Wizard extends React.Component {
                      width: this.props.width ? this.props.width + 'px' : '',
                      margin: this.props.center === true ? '0 auto' : '',
                  }}>
-                <Grid direction={this.props.direction}>
-                    {this._renderSteps(this.props.direction)}
-                    {this._renderContents(this.props.direction)}
+                <Grid direction={this.state.direction}>
+                    {this._renderSteps(this.state.direction)}
+                    {this._renderContents(this.state.direction)}
                 </Grid>
-                {this._renderActions(this.props.direction)}
+                {this._renderActions(this.state.direction)}
             </div>
         );
     };
 
     /**
-     * this.props.direction === 'vertical' 일 경우의 레이아웃을 렌더링
+     * this.state.direction === 'vertical' 일 경우의 레이아웃을 렌더링
      */
     _renderVerticalLayout = () => {
         const renderGridByStepPosition = stepPosition => {
             if (stepPosition === 'left') {
                 return (
-                    <Grid direction={this.props.direction}>
-                        {this._renderSteps(this.props.direction)}
-                        {this._renderContents(this.props.direction)}
+                    <Grid direction={this.state.direction}>
+                        {this._renderSteps(this.state.direction)}
+                        {this._renderContents(this.state.direction)}
                     </Grid>
                 )
             } else if (stepPosition === 'right') {
                 return (
-                    <Grid direction={this.props.direction}>
-                        {this._renderContents(this.props.direction)}
-                        {this._renderSteps(this.props.direction)}
+                    <Grid direction={this.state.direction}>
+                        {this._renderContents(this.state.direction)}
+                        {this._renderSteps(this.state.direction)}
                     </Grid>
                 )
             }
@@ -194,15 +192,15 @@ class Wizard extends React.Component {
                      margin: this.props.center === true ? '0 auto' : '',
                  }}>
                 {renderGridByStepPosition(this.props.stepPosition)}
-                {this._renderActions(this.props.direction)}
+                {this._renderActions(this.state.direction)}
             </div>
         );
     };
 
     render() {
-        if (this.props.direction === 'horizontal') {
+        if (this.props.stepPosition === 'top') {
             return this._renderHorizontalLayout();
-        } else if (this.props.direction === 'vertical') {
+        } else {
             return this._renderVerticalLayout();
         }
     }
