@@ -9,7 +9,10 @@ class ButtonPage extends React.Component {
     }
 
     render() {
-        return <Button>Button Example</Button>;
+        return [
+            <Button key="1">Button Example</Button>,
+            <Button key="2" hidden={true}>Button Hide Example</Button>,
+        ]
     }
 }
 

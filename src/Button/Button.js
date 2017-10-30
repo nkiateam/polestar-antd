@@ -28,6 +28,8 @@ class Button extends React.Component {
         onClick: PropTypes.func,
         /** true 일 경우 숨겨져 있다가 마우스를 올리면 나타난다 */
         ghost: PropTypes.bool,
+        /** true 일 경우 버튼이 보이지 않는다 (DOM은 생성됨) */
+        hidden: PropTypes.bool,
     };
 
     static defaultProps = {
@@ -36,11 +38,22 @@ class Button extends React.Component {
         size: 'default',
         loading: false,
         ghost: false,
+        hidden: false,
     };
 
     render() {
+
+        const {
+            hidden,
+            props
+        } = this.props;
+
+        const style = {
+            visibility: hidden && hidden === true ? 'hidden' : 'visible'
+        };
+
         return (
-            <AntButton {...this.props} >
+            <AntButton {...props} style={style}>
                 {this.props.children}
             </AntButton>
         );
