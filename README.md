@@ -1,4 +1,7 @@
 # polestar-antd
+[![npm](https://img.shields.io/npm/v/polestar-antd.svg)](https://github.com/nkiateam/polestar-antd)
+[![David](https://img.shields.io/david/nkiateam/polestar-antd.svg)](https://david-dm.org/nkiateam/polestar-antd)
+[![David](https://img.shields.io/david/dev/nkiateam/polestar-antd.svg)](https://david-dm.org/nkiateam/polestar-antd?type=dev)
 
 ## Installation
 
