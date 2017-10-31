@@ -4,6 +4,9 @@ import { message } from 'antd';
 import { Steps, Step, Contents, Actions, Grid } from './components';
 import './style/Wizard.css';
 
+/**
+ * Polestar Wizard Component.
+ */
 class Wizard extends React.Component {
 
     constructor(props) {
@@ -20,7 +23,7 @@ class Wizard extends React.Component {
         stepPosition: PropTypes.oneOf(['top', 'left', 'right']), // direction이 vertical일 경우 왼쪽/오른쪽 지정
         /** Steps의 크기 */
         size: PropTypes.oneOf(['default', 'small']), // Steps의 크기
-        /** directions이 vertical일 경우 Steps 영역의 너비 */
+        /** stepPosition이 top일 경우 Steps 영역의 너비 */
         stepWidth: PropTypes.number,
         /** Wizard 컴포넌트의 너비를 지정 */
         width: PropTypes.number,

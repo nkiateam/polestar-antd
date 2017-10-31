@@ -8,7 +8,7 @@
     "build": "babel ./src -d lib --copy-files",
     "example": "webpack-dev-server --config webpack.example.config.js",
     "doc": "styleguidist server",
-    "doc:build": "styleguidist build"
+    "doc:build": "styleguidist build && git add docs"
   },
   "dependencies": {
     "antd": "^2.13.6",
