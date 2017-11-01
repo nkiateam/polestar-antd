@@ -60,9 +60,7 @@ Wizard component step validation example:
 <Wizard stepPosition="top">
      <Wizard.Step 
          title="Step1" 
-         description="step1 description"
-         validate={false} // If false, prevents the process from proceeding to the next step and outputs a message
-         message="Something wrong!!">
+         description="step1 description">
          Step1
      </Wizard.Step>
      <Wizard.Step 
@@ -75,7 +73,11 @@ Wizard component step validation example:
          message="Something wrong!!">
          Step2
      </Wizard.Step>
-     <Wizard.Step title="Step3" description="step3 description">
+     <Wizard.Step 
+         title="Step3"
+         description="step3 description"
+         validate={false} // If false, prevents the process from proceeding to the next step and outputs a message
+         message="Something wrong!!">
          Step3
      </Wizard.Step>
 </Wizard>
