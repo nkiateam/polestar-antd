@@ -4,7 +4,8 @@
 [![David](https://img.shields.io/david/dev/nkiateam/polestar-antd.svg)](https://david-dm.org/nkiateam/polestar-antd?type=dev)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/nkiateam/polestar-antd/master/LICENSE)
 
-polestar-antd Àº [ant-design](https://github.com/ant-design/ant-design/) ÀÇ ¾Æ·¡ ÄÄÆ÷³ÍÆ®¸¦ wrapping ÇÑ ÄÄÆ÷³ÍÆ® ¶óÀÌºê·¯¸® ÀÔ´Ï´Ù.
+polestar-antdëŠ” [ant-design](https://github.com/ant-design/ant-design/) ì»´í¬ë„ŒíŠ¸ë“¤ì„ Wrappingí•œ ì»´í¬ë„ŒíŠ¸ ë¼ì´ë¸ŒëŸ¬ë¦¬ ìž…ë‹ˆë‹¤.
+Wrpping ëœ ì»´í¬ë„ŒíŠ¸ë“¤ì˜ ëª©ë¡ì€ ë‹¤ìŒê³¼ ê°™ìŠµë‹ˆë‹¤.
 
 > ### Wrapping Component
 - [Button](https://ant.design/components/button/)
