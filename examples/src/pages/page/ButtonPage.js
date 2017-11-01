@@ -9,9 +9,12 @@ class ButtonPage extends React.Component {
     }
 
     render() {
+        console.log(Button.ButtonGroup)
         return [
-            <Button key="1">Button Example</Button>,
-            <Button key="2" hidden={true}>Button Hide Example</Button>,
+            <Button.Group key="1">
+                <Button>Cancel</Button>
+                <Button type="primary">OK</Button>
+            </Button.Group>
         ]
     }
 }

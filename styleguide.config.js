@@ -11,7 +11,8 @@ module.exports = {
 
     // 문서화 할때 같이 번들링 할 의존성들
     require: [
-        './examples/src/style/App.css'
+        './examples/src/style/App.css',
+        './examples/src/style/Example.css',
     ],
 
     webpackConfig: {

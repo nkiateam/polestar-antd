@@ -45,7 +45,7 @@ class Button extends React.Component {
 
         const {
             hidden,
-            props
+            ...props
         } = this.props;
 
         const style = {
@@ -59,5 +59,7 @@ class Button extends React.Component {
         );
     }
 }
+
+Button.Group = AntButton.Group;
 
 export default Button;
