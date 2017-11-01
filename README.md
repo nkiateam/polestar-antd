@@ -6,10 +6,9 @@
 
 polestar-antd 은 [ant-design](https://github.com/ant-design/ant-design/) 의 아래 컴포넌트를 wrapping 한 컴포넌트 라이브러리 입니다.
 
-## Wrapping Component
-
-- Button
-- Steps
+> ### Wrapping Component
+- [Button](https://ant.design/components/button/)
+- [Steps](https://ant.design/components/steps/)
 
 ## Installation
 
