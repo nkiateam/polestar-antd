@@ -3,14 +3,13 @@
 [![David](https://img.shields.io/david/nkiateam/polestar-antd.svg)](https://david-dm.org/nkiateam/polestar-antd)
 [![David](https://img.shields.io/david/dev/nkiateam/polestar-antd.svg)](https://david-dm.org/nkiateam/polestar-antd?type=dev)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/nkiateam/polestar-antd/master/LICENSE)
-=================
 
 polestar-antd 은 [ant-design](https://github.com/ant-design/ant-design/) 의 아래 컴포넌트를 wrapping 한 컴포넌트 라이브러리 입니다.
 
 ## Wrapping Component
 
 - Button
-- Step
+- Steps
 
 ## Installation
 
