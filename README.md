@@ -1,7 +1,8 @@
 # polestar-antd
 [![npm](https://img.shields.io/npm/v/polestar-antd.svg)](https://www.npmjs.com/package/polestar-antd)
-[![David](https://img.shields.io/david/nkiateam/polestar-antd.svg)](https://david-dm.org/nkiateam/polestar-antd)
-[![David](https://img.shields.io/david/dev/nkiateam/polestar-antd.svg)](https://david-dm.org/nkiateam/polestar-antd?type=dev)
+[![Build Status](https://img.shields.io/travis/nkiateam/polestar-antd.svg)](https://travis-ci.org/nkiateam/polestar-antd)
+[![Dependencies](https://img.shields.io/david/nkiateam/polestar-antd.svg)](https://david-dm.org/nkiateam/polestar-antd)
+[![DevDependencies](https://img.shields.io/david/dev/nkiateam/polestar-antd.svg)](https://david-dm.org/nkiateam/polestar-antd?type=dev)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/nkiateam/polestar-antd/master/LICENSE)
 
 polestar-antd는 [ant-design](https://github.com/ant-design/ant-design/) 컴포넌트들을 Wrapping한 컴포넌트 라이브러리 입니다.
