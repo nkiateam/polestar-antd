@@ -17,7 +17,7 @@ class Spacing extends React.Component {
         this.state = {};
     }
 
-    _renderChildern = () => {
+    _renderChildren = () => {
         const { children } = this.props;
         return React.Children.map(children, (child) => {
             return React.cloneElement(child, {
@@ -29,7 +29,7 @@ class Spacing extends React.Component {
     };
 
     render() {
-        return this._renderChildern()
+        return this._renderChildren()
     }
 }
 
