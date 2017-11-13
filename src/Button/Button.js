@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AntButton from 'antd/lib/button';
+import Spacing from './components/Spacing';
 import './style/Button.css';
 
 /**
@@ -49,7 +50,8 @@ class Button extends React.Component {
         } = this.props;
 
         const style = {
-            visibility: hidden && hidden === true ? 'hidden' : 'visible'
+            visibility: hidden && hidden === true ? 'hidden' : 'visible',
+            ...props.style,
         };
 
         return (
@@ -61,5 +63,6 @@ class Button extends React.Component {
 }
 
 Button.Group = AntButton.Group;
+Button.Spacing = Spacing;
 
 export default Button;

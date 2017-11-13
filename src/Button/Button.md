@@ -101,3 +101,17 @@ Ghost Button Example:
     <Button type="danger" ghost>danger</Button>
 </div>
 ```
+
+Button Spacing Example:
+Button.Spacing으로 감싸면 버튼의 간격을 조정할 수 있습니다.
+```js
+<Button.Spacing spacing={7}>
+    <Button type="primary" ghost>Primary</Button>
+    <Button type="primary" ghost>Primary</Button>
+    <Button type="primary" ghost>Primary</Button>
+    <Button type="primary" ghost>Primary</Button>
+    <Button type="primary" ghost>Primary</Button>
+    <Button type="primary" ghost>Primary</Button>
+    <Button type="primary" ghost>Primary</Button>
+</Button.Spacing>
+```
