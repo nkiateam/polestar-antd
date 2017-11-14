@@ -24,8 +24,8 @@ class Spacing extends React.Component {
             return React.cloneElement(child, {
                 style: {
                     marginRight: isLast ? '' : this.props.spacing,
-
-                    marginBottom: isLast ? '' : this.props.spacing,
+                    marginTop: this.props.spacing,
+                    marginBottom: this.props.spacing,
                 }
             })
         });
