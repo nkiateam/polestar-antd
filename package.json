@@ -1,6 +1,6 @@
 {
   "name": "polestar-antd",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "",
   "main": "./lib/index.js",
   "scripts": {
@@ -9,6 +9,10 @@
     "example": "webpack-dev-server --config webpack.example.config.js",
     "doc": "styleguidist server",
     "doc:build": "styleguidist build && git add docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nkiateam/polestar-antd.git"
   },
   "dependencies": {
     "antd": "^2.13.6",
@@ -43,7 +47,9 @@
     "AntDesign",
     "Polestar"
   ],
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "author": "NKIA",
   "license": "MIT"
 }

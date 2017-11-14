@@ -11,8 +11,21 @@ class ButtonPage extends React.Component {
     render() {
         console.log(Button.ButtonGroup)
         return [
-            <Button.Spacing key="1">
+            <Button.Spacing key="1" spacing={15}>
                 <Button>Cancel</Button>
+                <Button type="primary">OK</Button>
+                <Button type="primary">OK</Button>
+                <Button type="primary">OK</Button>
+                <Button type="primary">OK</Button>
+                <Button type="primary">OK</Button>
+                <Button type="primary">OK</Button>
+                <Button type="primary">OK</Button>
+                <Button type="primary">OK</Button>
+                <Button type="primary">OK</Button>
+                <Button type="primary">OK</Button>
+                <Button type="primary">OK</Button>
+                <Button type="primary">OK</Button>
+                <Button type="primary">OK</Button>
                 <Button type="primary">OK</Button>
             </Button.Spacing>
         ]
