@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Spacing extends React.Component {
-
-
     static propTypes = {
         spacing: PropTypes.number,
     };
@@ -17,7 +15,7 @@ class Spacing extends React.Component {
         this.state = {};
     }
 
-    _renderChildren = () => {
+    renderChildren = () => {
         const { children } = this.props;
         return React.Children.map(children, (child, index) => {
             const isLast = index + 1 === children.length;
@@ -26,13 +24,13 @@ class Spacing extends React.Component {
                     marginRight: isLast ? '' : this.props.spacing,
                     marginTop: this.props.spacing,
                     marginBottom: this.props.spacing,
-                }
-            })
+                },
+            });
         });
     };
 
     render() {
-        return this._renderChildren()
+        return this.renderChildren();
     }
 }
 

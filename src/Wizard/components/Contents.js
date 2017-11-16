@@ -1,7 +1,6 @@
 import React from 'react';
 
 class Contents extends React.Component {
-
     render() {
         const style = {
             flex: 'auto',
@@ -9,10 +8,11 @@ class Contents extends React.Component {
         };
 
         return (
-            <div className="polestar-wizard-contents"
-                 style={style}
+            <div
+                className="polestar-wizard-contents"
+                style={style}
             >{this.props.children}</div>
-        )
+        );
     }
 }
 

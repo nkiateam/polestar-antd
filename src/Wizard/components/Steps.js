@@ -2,7 +2,6 @@ import React from 'react';
 import { Steps as AntSteps } from 'antd';
 
 class Steps extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {};
@@ -24,12 +23,14 @@ class Steps extends React.Component {
         };
 
         return (
-            <AntSteps {...props}
-                      className="polestar-wizard-steps"
-                      style={this.props.direction === 'horizontal' ? horizontalStyle : verticalStyle}>
+            <AntSteps
+                {...props}
+                className="polestar-wizard-steps"
+                style={this.props.direction === 'horizontal' ? horizontalStyle : verticalStyle}
+            >
                 {this.props.children}
             </AntSteps>
-        )
+        );
     }
 }
 

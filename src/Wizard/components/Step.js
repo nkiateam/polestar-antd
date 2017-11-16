@@ -5,7 +5,6 @@ import { Steps as AntSteps } from 'antd';
 const AntStep = AntSteps.Step;
 
 class Step extends React.Component {
-
     static propTypes = {
         contents: PropTypes.oneOfType([
             PropTypes.string,
@@ -19,7 +18,9 @@ class Step extends React.Component {
     };
 
     static defaultProps = {
-        message: 'message property is not defined. <Wizard.Step message="MY VALIDATION MESSAGE">'
+        contents: '',
+        validate: true,
+        message: 'message property is not defined. <Wizard.Step message="MY VALIDATION MESSAGE">',
     };
 
     render() {

@@ -2,7 +2,6 @@ import React from 'react';
 import { Button } from 'antd';
 
 class Actions extends React.Component {
-
     render() {
         return (
             <div className="steps-action polestar-wizard-actions">
@@ -24,7 +23,7 @@ class Actions extends React.Component {
                     </Button>
                 }
             </div>
-        )
+        );
     }
 }
 

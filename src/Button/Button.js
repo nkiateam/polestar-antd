@@ -8,7 +8,6 @@ import './style/Button.css';
  * Polestar Button Component.
  */
 class Button extends React.Component {
-
     static propTypes = {
         /** 버튼의 스타일 */
         type: PropTypes.oneOf(['primary', 'ghost', 'dashed', 'danger', 'default']),
@@ -36,14 +35,16 @@ class Button extends React.Component {
     static defaultProps = {
         type: 'default',
         htmlType: 'button',
+        icon: '',
+        shape: null,
         size: 'default',
         loading: false,
+        onClick: () => {},
         ghost: false,
         hidden: false,
     };
 
     render() {
-
         const {
             hidden,
             ...props
