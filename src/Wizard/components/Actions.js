@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button } from 'antd';
+import Button from '../../Button';
+import shortId from 'shortid';
 
 class Actions extends React.Component {
     render() {
@@ -8,20 +9,22 @@ class Actions extends React.Component {
                 { // Next Button
                     this.props.current < this.props.stepLength - 1
                     &&
-                    <Button type="primary" onClick={this.props.handleNext}>Next</Button>
+                    <Button type="primary" onClick={this.props.handleNext}>{this.props.nextButtonLabel}</Button>
                 }
                 { // Done Button
                     this.props.current === this.props.stepLength - 1
                     &&
-                    <Button type="primary" onClick={this.props.handleDone}>Done</Button>
+                    <Button type="primary" onClick={this.props.handleDone}>{this.props.doneButtonLabel}</Button>
                 }
                 { // Previous Button
                     this.props.current > 0
                     &&
                     <Button style={{ marginLeft: 8 }} onClick={this.props.handlePrev}>
-                        Previous
-                    </Button>
+                        {this.props.prevButtonLabel}</Button>
                 }
+                {this.props.customButtons.map(node => React.cloneElement(node, {
+                    key: shortId.generate(),
+                }))}
             </div>
         );
     }

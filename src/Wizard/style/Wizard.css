@@ -15,7 +15,13 @@
 }
 
 .polestar-wizard-actions {
+    display: flex;
+    flex-direction: row-reverse;
     margin: 0 auto;
+}
+
+.polestar-wizard-actions button {
+    margin: 5px 5px 5px 0;
 }
 
 .ant-steps-main {

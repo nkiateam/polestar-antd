@@ -24,7 +24,15 @@ class Wizard extends React.Component {
         /** Wizard 컴포넌트 가운데 정렬 여부 */
         center: PropTypes.bool, //
         /** Contents 영역의 최소 높이 */
-        minContentsHeight: PropTypes.number, // Contents 영역의 최소 높이
+        minContentsHeight: PropTypes.number,
+        /** Next 버튼에 표시할 라벨 */
+        nextButtonLabel: PropTypes.string,
+        /** Previous 버튼에 표시할 라벨 */
+        prevButtonLabel: PropTypes.string,
+        /** Done 버튼에 표시할 라벨 */
+        doneButtonLabel: PropTypes.string,
+        /** 기본 버튼셋 이외에 추가하고 싶은 버튼 컴포넌트를 배열로 전달 */
+        customButtons: PropTypes.arrayOf(PropTypes.element),
     };
 
     static defaultProps = {
@@ -34,6 +42,10 @@ class Wizard extends React.Component {
         width: '100%',
         center: true,
         minContentsHeight: 200,
+        nextButtonLabel: '다음',
+        prevButtonLabel: '이전',
+        doneButtonLabel: '완료',
+        customButtons: [],
     };
 
     constructor(props) {
@@ -187,6 +199,10 @@ class Wizard extends React.Component {
             handlePrev={this.handlePrev}
             direction={direction}
             stepPosition={stepPosition}
+            nextButtonLabel={this.props.nextButtonLabel}
+            prevButtonLabel={this.props.prevButtonLabel}
+            doneButtonLabel={this.props.doneButtonLabel}
+            customButtons={this.props.customButtons}
         />
     );
 
