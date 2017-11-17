@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { message } from 'antd';
+import shortid from 'shortid';
 import { Steps, Step, Contents, Actions, Grid } from './components';
 import './style/Wizard.css';
 
@@ -37,11 +38,22 @@ class Wizard extends React.Component {
 
     constructor(props) {
         super(props);
+        this.id = shortid.generate();
         this.state = {
             current: 0,
             status: '',
             direction: this.props.stepPosition === 'top' ? 'horizontal' : 'vertical',
         };
+    }
+
+    componentDidMount() {
+        const steps = document.querySelectorAll(`[data-id=${this.id}] .ant-steps-main`);
+        for (let i = 0; i < steps.length; i += 1) {
+            const step = steps[i];
+            step.onclick = () => {
+                this.handleStepClick(i);
+            };
+        }
     }
 
     /**
@@ -67,8 +79,36 @@ class Wizard extends React.Component {
                 status: 'error',
             });
         } else {
-            if (typeof callback === 'function') callback();
+            if (typeof callback === 'function') callback(flag);
             this.setState({
+                status: '',
+            });
+        }
+        return flag;
+    };
+
+    /**
+     * Step title을 클릭했을 때
+     * @param destStepIndex {number} 클릭된 step의 index (첫 번째 step이 0)
+     */
+    handleStepClick = (destStepIndex) => {
+        // 가고자 하는 방향이 정방향인지 역방향인지 (정방향이면 true, 역방향이면 false)
+        const isForward = destStepIndex > this.state.current;
+        if (isForward) {
+            while (this.state.current < destStepIndex) {
+                const flag = this.checkValidatingProps();
+                if (flag) {
+                    const current = this.state.current + 1;
+                    this.setState({
+                        current,
+                    });
+                } else {
+                    break;
+                }
+            }
+        } else {
+            this.setState({
+                current: destStepIndex,
                 status: '',
             });
         }
@@ -206,10 +246,10 @@ class Wizard extends React.Component {
     };
 
     render() {
-        if (this.props.stepPosition === 'top') {
-            return this.renderHorizontalLayout();
-        }
-        return this.renderVerticalLayout();
+        const layout = this.props.stepPosition === 'top' ? this.renderHorizontalLayout() : this.renderVerticalLayout();
+        return React.cloneElement(layout, {
+            'data-id': this.id,
+        });
     }
 }
 

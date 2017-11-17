@@ -39,7 +39,7 @@ export default MyComponent;
 ```
 Wizard component props usage:
 ```js
-<Wizard 
+<Wizard
     stepPosition="top"
     size="small"
     width={500}
@@ -58,13 +58,13 @@ Wizard component props usage:
 Wizard component step validation example:
 ```js
 <Wizard stepPosition="top">
-     <Wizard.Step 
-         title="Step1" 
+     <Wizard.Step
+         title="Step1"
          description="step1 description">
          Step1
      </Wizard.Step>
-     <Wizard.Step 
-         title="Step2" 
+     <Wizard.Step
+         title="Step2"
          description="step2 description"
          validate={() => {
              // Validation logic
@@ -73,7 +73,7 @@ Wizard component step validation example:
          message="Something wrong!!">
          Step2
      </Wizard.Step>
-     <Wizard.Step 
+     <Wizard.Step
          title="Step3"
          description="step3 description"
          validate={false} // If false, prevents the process from proceeding to the next step and outputs a message

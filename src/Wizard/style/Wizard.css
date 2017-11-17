@@ -17,3 +17,7 @@
 .polestar-wizard-actions {
     margin: 0 auto;
 }
+
+.ant-steps-main {
+    cursor: pointer;
+}
