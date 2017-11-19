@@ -37,6 +37,7 @@ export default MyComponent;
     </Wizard.Step>
 </Wizard>
 ```
+
 Wizard component props usage:
 ```js
 <Wizard
@@ -55,6 +56,7 @@ Wizard component props usage:
     </Wizard.Step>
 </Wizard>
 ```
+
 Wizard component step validation example:
 ```js
 <Wizard stepPosition="top">
@@ -83,6 +85,28 @@ Wizard component step validation example:
 </Wizard>
 ```
 
+Wizard component custom buttons example:
+```js
+<Wizard
+    customButtons={[
+        <Button>커스텀버튼1</Button>,
+        <Button>커스텀버튼2</Button>,
+        <Button>커스텀버튼3</Button>,
+    ]}
+>
+    <Wizard.Step title="Step1" description="step1 description">
+        Step1
+    </Wizard.Step>
+    <Wizard.Step title="Step2" description="step2 description">
+        Step2
+    </Wizard.Step>
+    <Wizard.Step title="Step3" description="step3 description">
+        Step3
+    </Wizard.Step>
+</Wizard>
+```
+
+Wizard component modal example:
 ```js
 class MyComponent extends React.Component {
     constructor() {
