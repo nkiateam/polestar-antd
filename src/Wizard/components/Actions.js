@@ -3,14 +3,14 @@ import shortId from 'shortid';
 import Button from '../../Button';
 
 class Actions extends React.Component {
-    renderNextButton = () => (this.props.current < this.props.stepLength - 1
+    renderNextButton = () => (this.props.current < this.props.stepLength
         ? <Button type="primary" onClick={this.props.handleNext}>{this.props.nextButtonLabel}</Button> : null);
 
     renderPreviousButton = () => (this.props.current > 0
         ? <Button onClick={this.props.handlePrev}>
             {this.props.prevButtonLabel}</Button> : null);
 
-    renderDoneButton = () => (this.props.current === this.props.stepLength - 1
+    renderDoneButton = () => (this.props.current === this.props.stepLength
         ? <Button type="primary" onClick={this.props.handleDone}>{this.props.doneButtonLabel}</Button> : null);
 
     renderCustomButtons = () => (

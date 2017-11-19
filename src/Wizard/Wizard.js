@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { message } from 'antd';
+import { Modal, message } from 'antd';
 import shortid from 'shortid';
 import { Steps, Step, Contents, Actions, Grid } from './components';
 import './style/Wizard.css';
@@ -10,6 +10,10 @@ import './style/Wizard.css';
  */
 class Wizard extends React.Component {
     static propTypes = {
+        /** Wizard를 Modal로 제공할 것인지, 그냥 제공할 것인지 지정 */
+        modal: PropTypes.bool,
+        /** Wizard를 Modal로 제공할 경우, 보여줄 지 말지 여부 */
+        open: PropTypes.bool,
         /** direction이 vertical일 경우 Steps의 위치 왼쪽/오른쪽 지정 */
         stepPosition: PropTypes.oneOf(['top', 'left', 'right']), // direction이 vertical일 경우 왼쪽/오른쪽 지정
         /** Steps의 크기 */
@@ -33,9 +37,24 @@ class Wizard extends React.Component {
         doneButtonLabel: PropTypes.string,
         /** 기본 버튼셋 이외에 추가하고 싶은 버튼 컴포넌트를 배열로 전달 */
         customButtons: PropTypes.arrayOf(PropTypes.element),
+        /** 완료 단계에 보여줄 화면 */
+        done: PropTypes.oneOfType([
+            PropTypes.element,
+            PropTypes.string,
+        ]),
+        /** 다음 단계로 갈 때 호출되는 콜백 */
+        onNext: PropTypes.func,
+        /** 완료 단계로 갈 때 호출되는 함수 */
+        onDone: PropTypes.func,
+        /** 이전 단계로 갈 때 호출되는 콜백 */
+        onPrev: PropTypes.func,
+        /** 위자드 컴포넌트가 모달로 팝업되어있는 상태에서 오른쪽 상단의 x버튼을 누르거나 Esc 버튼을 눌렀을 때 호출되는 콜백 */
+        onCancel: PropTypes.func,
     };
 
     static defaultProps = {
+        modal: true,
+        open: false,
         size: 'default',
         stepPosition: 'left',
         stepWidth: 200,
@@ -46,27 +65,48 @@ class Wizard extends React.Component {
         prevButtonLabel: '이전',
         doneButtonLabel: '완료',
         customButtons: [],
+        done: <div>완료 화면을 작성하세요. DOM을 done props로 전달하면 됩니다.</div>,
+        onNext: () => {},
+        onDone: () => {},
+        onPrev: () => {},
+        onCancel: () => {},
     };
 
     constructor(props) {
         super(props);
         this.id = shortid.generate();
+        this.clickListenerBinded = false;
         this.state = {
             current: 0,
-            status: '',
+            error: false,
             direction: this.props.stepPosition === 'top' ? 'horizontal' : 'vertical',
         };
     }
 
     componentDidMount() {
-        const steps = document.querySelectorAll(`[data-id=${this.id}] .ant-steps-main`);
-        for (let i = 0; i < steps.length; i += 1) {
-            const step = steps[i];
-            step.onclick = () => {
-                this.handleStepClick(i);
-            };
+        this.bindClickEventListenerToStep();
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.clickListenerBinded === false && !prevProps.open && this.props.open) {
+            setTimeout(() => {
+                this.bindClickEventListenerToStep();
+                this.clickListenerBinded = true;
+            }, 0);
         }
     }
+
+    bindClickEventListenerToStep = () => {
+        setTimeout(() => {
+            const steps = document.querySelectorAll(`[data-id=${this.id}] .ant-steps-main`);
+            for (let i = 0; i < steps.length; i += 1) {
+                const step = steps[i];
+                step.onclick = () => {
+                    this.handleStepClick(i);
+                };
+            }
+        }, 0);
+    };
 
     /**
      * Wizard 컴포넌트의 validation 관련 props는 'validation'과 'message' 두 가지가 있다.
@@ -76,27 +116,32 @@ class Wizard extends React.Component {
      * checkValidationProps는 현재 Step의 'validation' props와 'message' props를 검사하고 핸들링한다.
      */
     checkValidatingProps = (callback) => {
-        const currentStepProps = this.props.children[this.state.current].props;
-        const currentStepValidateProps = currentStepProps.validate;
-        const currentStepMessageProps = currentStepProps.message;
-        let flag = true;
-        if (typeof currentStepValidateProps === 'function') {
-            flag = currentStepValidateProps();
-        } else if (typeof currentStepValidateProps === 'boolean') {
-            flag = currentStepValidateProps;
+        const stepsLength = React.Children.count(this.props.children);
+        const isDone = stepsLength === this.state.current;
+        if (!isDone) {
+            const currentStepProps = this.props.children[this.state.current].props;
+            const currentStepValidateProps = currentStepProps.validate;
+            const currentStepMessageProps = currentStepProps.message;
+            let flag = true;
+            if (typeof currentStepValidateProps === 'function') {
+                flag = currentStepValidateProps();
+            } else if (typeof currentStepValidateProps === 'boolean') {
+                flag = currentStepValidateProps;
+            }
+            if (flag === false) {
+                message.error(currentStepMessageProps);
+                this.setState({
+                    error: true,
+                });
+            } else {
+                if (typeof callback === 'function') callback();
+                this.setState({
+                    error: false,
+                });
+            }
+            return flag;
         }
-        if (flag === false) {
-            message.error(currentStepMessageProps);
-            this.setState({
-                status: 'error',
-            });
-        } else {
-            if (typeof callback === 'function') callback(flag);
-            this.setState({
-                status: '',
-            });
-        }
-        return flag;
+        return true;
     };
 
     /**
@@ -121,7 +166,7 @@ class Wizard extends React.Component {
         } else {
             this.setState({
                 current: destStepIndex,
-                status: '',
+                error: false,
             });
         }
     };
@@ -135,6 +180,7 @@ class Wizard extends React.Component {
             this.setState({
                 current,
             });
+            this.props.onNext();
         });
     };
 
@@ -142,7 +188,7 @@ class Wizard extends React.Component {
      * Done 버튼이 클릭되었을 때
      */
     handleDone = () => {
-        this.checkValidatingProps();
+        this.props.onDone();
     };
 
     /**
@@ -152,8 +198,9 @@ class Wizard extends React.Component {
         const current = this.state.current - 1;
         this.setState({
             current,
-            status: '',
+            error: false,
         });
+        this.props.onPrev();
     };
 
     /**
@@ -166,7 +213,7 @@ class Wizard extends React.Component {
             direction={direction}
             stepPosition={stepPosition}
             stepWidth={this.props.stepWidth}
-            status={this.state.status}
+            status={this.state.error ? 'error' : ''}
         >
             {this.props.children}
         </Steps>
@@ -176,14 +223,22 @@ class Wizard extends React.Component {
      * Contents 영역을 렌더링
      */
     renderContents = (direction, stepPosition) => {
-        const currentStep = Array.isArray(this.props.children) ?
-            this.props.children[this.state.current] : this.props.children;
+        const stepsLength = React.Children.count(this.props.children);
+        const isDone = stepsLength === this.state.current;
+        let stepContents = null;
+        if (!isDone) {
+            const currentStep = stepsLength > 1 ?
+                this.props.children[this.state.current] : this.props.children;
+            stepContents = currentStep.props.contents || currentStep.props.children;
+        } else {
+            stepContents = this.props.done;
+        }
         return (
             <Contents
                 direction={direction}
                 stepPosition={stepPosition}
                 minContentsHeight={this.props.minContentsHeight}
-            >{currentStep.props.contents || currentStep.props.children}</Contents>
+            >{stepContents}</Contents>
         );
     };
 
@@ -221,7 +276,7 @@ class Wizard extends React.Component {
                 {this.renderSteps(this.state.direction)}
                 {this.renderContents(this.state.direction)}
             </Grid>
-            {this.renderActions(this.state.direction)}
+            {!this.props.modal && this.renderActions(this.state.direction)}
         </div>
     );
 
@@ -256,16 +311,28 @@ class Wizard extends React.Component {
                 }}
             >
                 {renderGridByStepPosition(this.props.stepPosition)}
-                {this.renderActions(this.state.direction)}
+                {!this.props.modal && this.renderActions(this.state.direction)}
             </div>
         );
     };
 
     render() {
         const layout = this.props.stepPosition === 'top' ? this.renderHorizontalLayout() : this.renderVerticalLayout();
-        return React.cloneElement(layout, {
+        const body = React.cloneElement(layout, {
             'data-id': this.id,
         });
+
+        return this.props.modal ?
+            <Modal
+                footer={this.renderActions(this.state.direction)}
+                visible={this.props.open}
+                width={this.props.width + 100}
+                onCancel={this.props.onCancel}
+            >
+                {body}
+            </Modal>
+            :
+            body;
     }
 }
 
