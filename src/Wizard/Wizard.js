@@ -88,6 +88,11 @@ class Wizard extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
+        /**
+         *  Wizard 컴포넌트가 모달로 제공될 경우 첫 모달이 팝업되기 전까지 Wizard DOM이 존재하지 않음.
+         *  dom이 없기 때문에 클릭 이벤트 리스너도 바인딩할 수 없음.
+         *  모달이 팝업될 때 props가 업데이트 되는데 이 때를 기다려서 Step label에 클릭 이벤트 리스너를 바인딩함
+         */
         if (this.clickListenerBinded === false && !prevProps.open && this.props.open) {
             setTimeout(() => {
                 this.bindClickEventListenerToStep();
@@ -96,6 +101,11 @@ class Wizard extends React.Component {
         }
     }
 
+    /**
+     * Step label을 클릭했을 때 해당 단계로 이동하는 기능을 구현한 함수
+     * Ant design에서 label 클릭 이벤트 콜백을 지원하지 않고, dom 구조 또한 까다롭게 되어있어서
+     * 직접 dom을 찾아서 클릭 이벤트 리스너를 바인딩함
+     */
     bindClickEventListenerToStep = () => {
         setTimeout(() => {
             const steps = document.querySelectorAll(`[data-id=${this.id}] .ant-steps-main`);
