@@ -23,10 +23,10 @@ class Actions extends React.Component {
         return (
             <div className="steps-action polestar-wizard-actions">
                 <Button.Spacing>
-                    { this.renderNextButton() }
-                    { this.renderDoneButton() }
-                    { this.renderPreviousButton() }
                     { this.renderCustomButtons() }
+                    { this.renderPreviousButton() }
+                    { this.renderDoneButton() }
+                    { this.renderNextButton() }
                 </Button.Spacing>
             </div>
         );

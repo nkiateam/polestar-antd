@@ -18,7 +18,7 @@ class Spacing extends React.Component {
     renderChildren = () => {
         const { children } = this.props;
         return React.Children.map(children, (child, index) => {
-            const isLast = index === React.Children.count(children);
+            const isLast = index + 1 === React.Children.count(children);
             return child ? React.cloneElement(child, {
                 style: {
                     marginRight: isLast ? '' : this.props.spacing,

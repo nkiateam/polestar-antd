@@ -53,7 +53,7 @@ class Wizard extends React.Component {
     };
 
     static defaultProps = {
-        modal: true,
+        modal: false,
         open: false,
         size: 'default',
         stepPosition: 'left',

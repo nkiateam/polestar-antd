@@ -16,7 +16,8 @@
 
 .polestar-wizard-actions {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
+	justify-content: flex-end;
     margin: 0 auto;
 }
 

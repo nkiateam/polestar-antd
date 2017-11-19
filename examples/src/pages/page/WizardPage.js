@@ -35,6 +35,11 @@ class WizardPage extends React.Component {
                     onDone={() => { console.log('done'); this.closeWizard(); }}
                     onNext={() => { console.log('next'); }}
                     onCancel={this.closeWizard}
+                    customButtons={[
+                        <Button>커스텀버튼1</Button>,
+                        <Button>커스텀버튼2</Button>,
+                        <Button>커스텀버튼3</Button>,
+                    ]}
                 >
                     <Wizard.Step title="Step1" description="step1 description">
                         What is Lorem Ipsum?
