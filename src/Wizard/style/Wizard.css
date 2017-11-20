@@ -24,3 +24,7 @@
 .ant-steps-main {
     cursor: pointer;
 }
+
+.ant-modal-footer button + button {
+    margin-left: 0;
+}
